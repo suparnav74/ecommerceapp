@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { validateRequest } from "@/lib/auth";
 //import { SessionProvider } from "./providers/sessionProvider";
+import { SessionProvider } from "./context/SessionContext";
+import UserProfile from "./Profile/UserProfile";
 
 
 const geistSans = localFont({
@@ -27,16 +29,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const sessionData = await validateRequest();
-  console.log(sessionData);
+  // const sessionData = await validateRequest();
+  // console.log(sessionData);
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <SessionProvider value={sessionData}> */}
+        {/* <SessionProvider value={sessionData}>
         {children}
-        {/* </SessionProvider> */}
+        </SessionProvider> */}
+
+        <SessionProvider>
+        <div>
+        <h1>Welcome</h1>
+        <UserProfile />
+        </div>
+        </SessionProvider>
       </body>
     </html>
   );
