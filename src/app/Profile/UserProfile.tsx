@@ -5,7 +5,7 @@ import { useSession } from "../context/SessionContext";
 const UserProfile = () => {
   const session = useSession();
 
-  if (!session?.loggedIn) {
+  if (!session.loggedIn) {
     return <div>Please log in.</div>;
   }
 
